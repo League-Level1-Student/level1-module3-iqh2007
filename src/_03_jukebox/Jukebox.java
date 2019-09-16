@@ -35,6 +35,8 @@ public class Jukebox implements Runnable, ActionListener {
 	JButton b3;
 	
 	Song s1 = new Song("m1.mp3");
+	Song s2 = new Song("cello.wav");
+	Song s3 = new Song("piano.mp3");
 	
     public void run() {
 
@@ -96,8 +98,25 @@ public class Jukebox implements Runnable, ActionListener {
 		JButton buttonClicked = (JButton) e.getSource();
 		
 		if(b1 == buttonClicked) {
-			System.out.println("hi");
+			s3.stop();
+			s2.stop();
+			s1.play();
 		}
+		
+		if(b2 == buttonClicked) {
+			System.out.println("button 2");
+			s1.stop();
+			s3.stop();
+			s2.play();
+		}
+		
+		if(b3 == buttonClicked) {
+			System.out.println("button 3");
+			s1.stop();
+			s2.stop();
+			s3.play();
+		}
+		
 	}
 
 }
