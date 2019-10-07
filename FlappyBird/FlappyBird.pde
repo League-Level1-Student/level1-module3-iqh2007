@@ -1,11 +1,14 @@
+
 int birdY = 250;
 int birdX = 200;
-int birdYVelocity = 60;
+int birdYVelocity = 50;
 int gravity = 2;
 int pipeX = 500;
-int upperPipeHeight = 400;
-int lowerPipeHeight = 200;
-int pipeGap = 150;
+int upperPipeHeight = (int)random(325)+75;;
+int lowerPipeHeight = upperPipeHeight + 200;
+int pipeGap = 300;
+int lowerY = upperPipeHeight + pipeGap;
+int pipeWidth = 50;
 
 void setup(){
   size(700, 700);
@@ -31,12 +34,35 @@ void draw(){
  lowerPipeHeight = upperPipeHeight + 200;
       }
       
- rect(pipeX, 500, 50, lowerPipeHeight);
+ rect(pipeX, lowerPipeHeight, 50,700-lowerPipeHeight);
  
  
+  fill(255,255,255);
+  rect(0, 680, 700, 20);
+ 
+ 
+ if (intersectsPipes( )== true){
+   exit();
+ }
+ 
+ if(birdY > 680){
+   
+   exit();
+   
+ }
  
 }
 
-void mousePressed(){
+void keyPressed(){
   birdY = birdY - birdYVelocity;
-}            
+} 
+
+
+boolean intersectsPipes() {
+     if (birdY < upperPipeHeight && birdX > pipeX && birdX < (pipeX+pipeWidth)){
+          return true; 
+     }
+     else if (birdY > lowerY && birdX > pipeX && birdX < (pipeX+pipeWidth)) {
+          return true; }
+     else { return false; }
+}
